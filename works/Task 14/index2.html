@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+</head>
+<body>
+
+    <h2>Enter Your Date of Birth</h2>
+
+    <!-- Date input for DOB -->
+    <input type="date" id="dob" name="dob">
+    
+    <!-- Button to calculate age -->
+    <button onclick="calculateAge()">Calculate Age</button>
+
+    <h3>Your Age is: <span id="ageDisplay"></span></h3>
+
+    <script>
+        // Age class to handle the logic
+        class Age {
+            constructor(name, yearOfBirth) {
+                this.name = name;
+                this.yearOfBirth = yearOfBirth;
+            }
+
+            // Method to calculate the age
+            getAge(currentYear) {
+                return currentYear - this.yearOfBirth;
+            }
+        }
+
+        // Function to calculate and display the age
+        function calculateAge() {
+            // Get the current year
+            const currentYear = new Date().getFullYear();
+
+            // Get the DOB input value from the user
+            const dobInput = document.getElementById('dob').value;
+            
+            // If the input is empty, alert the user
+            if (!dobInput) {
+                alert("Please enter your date of birth.");
+                return;
+            }
+
+            // Extract the year of birth from the date input
+            const dob = new Date(dobInput);
+            const yearOfBirth = dob.getFullYear();
+
+            // Create a new Age object
+            const ageObj = new Age('Person', yearOfBirth);
+
+            // Get the calculated age
+            const age = ageObj.getAge(currentYear);
+
+            // Display the age
+            document.getElementById('ageDisplay').textContent = age;
+        }
+    </script>
+
+</body>
+</html>

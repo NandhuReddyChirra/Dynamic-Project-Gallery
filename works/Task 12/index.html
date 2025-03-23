@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 500px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .input-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .input-container input {
+            padding: 8px;
+            width: 48%; /* 2 per row */
+            box-sizing: border-box;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .button-container button {
+            padding: 10px;
+            width: 150px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .button-container button:hover {
+            background-color: #45a049;
+        }
+
+        #search-container {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        #search-container input {
+            padding: 8px;
+            width: 80%;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        #div {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Student Information Form</h1>
+
+        <div class="input-container">
+            <input placeholder="Enter Name" id="name">
+            <input placeholder="Enter Gender" id="gender">
+            <input placeholder="Enter University" id="university">
+            <input placeholder="Enter Semester" id="semester">
+            <input placeholder="Input Degree" id="degree">
+            <input placeholder="Enter Major" id="major">
+            <input placeholder="Enter the Year" id="year">
+        </div>
+
+        <div class="button-container">
+            <button onclick="insert_student_info()">Insert Info</button>
+            <button onclick="clear_input_fields()">Clear Inputs</button>
+            <button onclick="show_all_student_info()">Show All Details</button>
+            <button onclick="clear_display()">Clear Display</button>
+        </div>
+
+        <!-- Search Field -->
+        <div id="search-container">
+            <input type="text" id="search" placeholder="Search by Name or University" oninput="search_student_info()">
+        </div>
+
+        <div id="div"></div>
+    </div>
+
+    <script>
+        let studentRecords = [];
+
+        // Student Constructor
+        function Student(name, gender, university, semester, degree, major, year) {
+            this.name = name;
+            this.gender = gender;
+            this.university = university;
+            this.semester = semester;
+            this.degree = degree;
+            this.major = major;
+            this.year = year;
+            this.describe = function() {
+                return `<tr><td>${this.name}</td><td>${this.gender}</td><td>${this.university}</td><td>${this.semester}</td><td>${this.degree}</td><td>${this.major}</td><td>${this.year}</td></tr>`;
+            };
+        }
+
+        function insert_student_info() {
+            let name = document.getElementById("name").value;
+            let gender = document.getElementById("gender").value;
+            let university = document.getElementById("university").value;
+            let semester = document.getElementById("semester").value;
+            let degree = document.getElementById("degree").value;
+            let major = document.getElementById("major").value;
+            let year = document.getElementById("year").value;
+
+            // Create new student object
+            let newStudent = new Student(name, gender, university, semester, degree, major, year);
+
+            // Push to studentRecords array
+            studentRecords.push(newStudent);
+
+            // Clear input fields
+           
+
+            alert("Information inserted successfully!");
+        }
+
+        function clear_input_fields() {
+            document.getElementById("name").value = "";
+            document.getElementById("gender").value = "";
+            document.getElementById("university").value = "";
+            document.getElementById("semester").value = "";
+            document.getElementById("degree").value = "";
+            document.getElementById("major").value = "";
+            document.getElementById("year").value = "";
+        }
+
+        function show_all_student_info() {
+            let output = "<table><tr><th>Name</th><th>Gender</th><th>University</th><th>Semester</th><th>Degree</th><th>Major</th><th>Year</th></tr>";
+            studentRecords.forEach((student) => {
+                output += student.describe();
+            });
+            output += "</table>";
+
+            document.getElementById("div").innerHTML = output || "No records available.";
+        }
+
+        function clear_display() {
+            document.getElementById("div").innerHTML = "";
+        }
+
+        // Search Functionality
+        function search_student_info() {
+            let searchTerm = document.getElementById("search").value.toLowerCase();
+            let filteredRecords = studentRecords.filter(student => {
+                return student.name.toLowerCase().includes(searchTerm) || student.university.toLowerCase().includes(searchTerm);
+            });
+
+            let output = "<table><tr><th>Name</th><th>Gender</th><th>University</th><th>Semester</th><th>Degree</th><th>Major</th><th>Year</th></tr>";
+            filteredRecords.forEach((student) => {
+                output += student.describe();
+            });
+            output += "</table>";
+
+            document.getElementById("div").innerHTML = output || "No matching records found.";
+        }
+    </script>
+
+</body>
+</html>

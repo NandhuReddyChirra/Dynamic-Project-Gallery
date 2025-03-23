@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<head>
+    
+</head>
+<body>
+
+    <script>
+        const studentRecords = [];
+
+        function insert_student_info() {
+            const student = {
+                name: document.getElementById("name").value,
+                gender: document.getElementById("gender").value,
+                university: document.getElementById("university").value,
+                semester: document.getElementById("semester").value,
+                degree: document.getElementById("degree").value,
+                Major: document.getElementById("major").value,
+                year: document.getElementById("year").value,
+                description: function() {
+                    return "My name is " + this.name + ". I am a " + this.gender + " student pursuing " + this.degree + " in " + this.Major + " at " + this.university + ". I am in the " + this.semester + " semester of the year " + this.year + ".";
+                }
+            };
+
+            studentRecords.push(student);
+
+            document.getElementById("name").value = "";
+            document.getElementById("gender").value = "";
+            document.getElementById("university").value = "";
+            document.getElementById("semester").value = "";
+            document.getElementById("degree").value = "";
+            document.getElementById("major").value = "";
+            document.getElementById("year").value = "";
+
+            alert("Information inserted successfully!");
+        }
+
+        function show_student_info() {
+            let output = "";
+            studentRecords.forEach((student, index) => {
+                output += `<strong>Record ${index + 1}:</strong><br>`;
+                output += student.description() + "<br><br>";
+            });
+
+            document.getElementById("div").innerHTML = output || "No records available.";
+        }
+    </script>
+
+    <input placeholder="Enter Name" id="name">
+    <input placeholder="Enter Gender" id="gender">
+    <input placeholder="Enter University" id="university">
+    <input placeholder="Enter Semester" id="semester">
+    <input placeholder="Input Degree" id="degree">
+    <input placeholder="Enter Major" id="major">
+    <input placeholder="Enter the Year" id="year">
+
+    <button onclick="insert_student_info()">Insert Info</button>
+    <button onclick="show_student_info()">Show Info</button>
+
+    <p id="div"> </p>
+
+</body>
+</html>

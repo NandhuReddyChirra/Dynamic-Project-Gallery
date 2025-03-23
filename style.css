@@ -1,0 +1,93 @@
+/* Body Styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212; /* Dark background for contrast */
+    color: #ffffff;
+    text-align: center;
+}
+
+/* Title Styling */
+h1 {
+    padding: 30px;
+    background: linear-gradient(135deg, rgba(0, 255, 255, 0.3), rgba(255, 0, 255, 0.4), rgba(0, 255, 255, 0.7)); /* Vibrant gradient */
+    color: white;
+    margin: 0;
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.6), 0 0 50px rgba(255, 0, 255, 0.5); /* Glowing neon effect */
+    border-radius: 8px;
+    font-size: 3em;
+    font-weight: bold;
+}
+
+/* Navigation Panel Styling */
+nav {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr); /* 9 columns for the first row */
+    grid-template-rows: 1fr 1fr; /* Two rows for the navbar */
+    gap: 15px;
+    padding: 15px;
+    background: linear-gradient(45deg, rgba(255, 0, 255, 0.4), rgba(0, 255, 255, 0.5), rgba(102, 0, 255, 0.7)); /* Gradient background */
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s ease infinite; /* Animated background gradient */
+    position: relative;
+    color: white;
+    border-bottom: 2px solid #444;
+    box-sizing: border-box;
+    margin: 0 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.6), 0 0 40px rgba(102, 0, 255, 0.6); /* Glowing neon effect */
+    overflow: hidden; /* Hide any overflow */
+}
+
+/* Gradient animation for the navbar */
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Nav Link Styling */
+nav a {
+    text-decoration: none;
+    padding: 12px 25px;
+    background: rgba(0, 0, 0, 0.5); /* Darker background for links */
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+nav a:hover {
+    background: rgba(0, 255, 255, 0.8); /* Hover effect: neon cyan */
+    transform: scale(1.1);
+}
+
+nav a.active {
+    background: rgba(102, 0, 255, 0.8); /* Active project link */
+}
+
+/* Second Row Project Adjustment */
+nav a:nth-child(n+10) {
+    grid-column: auto; /* Place them on a new column */
+    grid-row: 2; /* Set them in the second row */
+    justify-self: center; /* Center these items */
+}
+
+/* Main Content Section */
+main {
+    width: 100%;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+iframe {
+    width: 90%;
+    height: 80vh;
+    border: none;
+    background: white;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5); /* Glowing effect for iframe */
+}

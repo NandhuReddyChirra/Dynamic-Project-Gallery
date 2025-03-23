@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <input id="x" placeholder="enter number 1">
+    <input id="y" placeholder="enter number 2 ">
+    <button onclick="SNR()">CALCULATE sum</button>
+    <div>
+        the sum is: <span id="res"></span></div>
+</body>
+<script>
+    const colors = ["red", "green", "blue", "orange"];
+    let idx = 0;
+    function SNR() {
+        let x = parseInt(document.getElementById("x").value);
+        let y = parseInt(document.getElementById("y").value);
+        let sum = 0;
+        let i = x;
+        do {
+            if (i > y) break;
+            sum += i;
+            i++;
+        } while (i <= y)
+
+        document.getElementById("res").innerHTML = sum;
+        document.getElementById("res").style = "color:" + colors[idx];
+        idx = [idx + 1] % colors.length;
+    }
+</script>
+
+</html>

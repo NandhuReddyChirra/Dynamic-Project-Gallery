@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+    function generate(){
+    
+        let s= document.getElementById("input_field").value;
+        let n = s.toUpperCase();
+        document.getElementById("output_field").value = n;
+    }
+
+</script>
+    
+</head>
+<body>
+    <input id = "input_field" placeholder= "Input Text" onkeyup = "generate();" />
+    <input id="output_field" placeholder="Output Text"  disabled />
+
+</body>
+</html>
